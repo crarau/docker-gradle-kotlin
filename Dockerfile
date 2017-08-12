@@ -4,8 +4,12 @@ ENV KOTLIN_VERSION=1.1.2-2 \
             KOTLIN_HOME=/usr/local/kotlin
 
 USER root
+ RUN   apk update \                                                                                                                                                                                                                        
+  &&   apk add ca-certificates wget \                                                                                                                                                                                                      
+  &&   update-ca-certificates    
+  
 RUN         cd  /tmp && \
-            wget -k "https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip"  && \
+            wget "https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip"  && \
             unzip "kotlin-compiler-${KOTLIN_VERSION}.zip" && \
             mkdir -p "${KOTLIN_HOME}" && \
             mv "/tmp/kotlinc/bin" "/tmp/kotlinc/lib" "${KOTLIN_HOME}" && \
