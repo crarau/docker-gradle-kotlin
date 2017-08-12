@@ -1,4 +1,4 @@
-FROM gradle
+FROM gradle:4.0.1-jre8-alpine
 
 ENV KOTLIN_VERSION=1.1.2-2 \
             KOTLIN_HOME=/usr/local/kotlin
